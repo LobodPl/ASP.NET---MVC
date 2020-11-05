@@ -1,0 +1,1 @@
+﻿@model IEnumerable<string>@foreach (string category in Model){<a class="btn btn-block" asp-action="List" asp-controller="Product" asp-route-category="@category">    @category</a>}
