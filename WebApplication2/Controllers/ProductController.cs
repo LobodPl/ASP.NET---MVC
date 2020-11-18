@@ -13,12 +13,8 @@ namespace WebApplication2.Controllers
     {
         private EFProductRepository EFPR;
 
-        public ProductController()
+        public ProductController(AppDbContext ctx)
         {
-            DbContextOptionsBuilder<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>();
-            String connectionString = @"Server=.\SQLExpress;Database=Test;Trusted_Connection=Yes;";
-            options.UseSqlServer(connectionString, providerOptions => providerOptions.CommandTimeout(60));
-            AppDbContext ctx = new AppDbContext(options.Options);
             this.EFPR = new EFProductRepository(ctx);
         }
 
