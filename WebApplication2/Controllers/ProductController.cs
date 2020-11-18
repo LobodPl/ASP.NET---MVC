@@ -11,24 +11,25 @@ namespace WebApplication2.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Index()
+        private EFProductRepository EFPR;
+
+        public ProductController()
         {
             DbContextOptionsBuilder<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>();
             String connectionString = @"Server=.\SQLExpress;Database=Test;Trusted_Connection=Yes;";
             options.UseSqlServer(connectionString, providerOptions => providerOptions.CommandTimeout(60));
             AppDbContext ctx = new AppDbContext(options.Options);
-            EFProductRepository EFPR = new EFProductRepository(ctx);
-            return View(EFPR.Products);
+            this.EFPR = new EFProductRepository(ctx);
+        }
+
+        public IActionResult Index()
+        {
+            return View(this.EFPR.Products);
         }
 
         public IActionResult List(string category)
         {
-            DbContextOptionsBuilder<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>();
-            String connectionString = @"Server=.\SQLExpress;Database=Test;Trusted_Connection=Yes;";
-            options.UseSqlServer(connectionString, providerOptions => providerOptions.CommandTimeout(60));
-            AppDbContext ctx = new AppDbContext(options.Options);
-            EFProductRepository EFPR = new EFProductRepository(ctx);
-            return View(EFPR.Products.Where(x => x.Category.Name == category));
+            return View(this.EFPR.Products.Where(x => x.Category.Name == category));
         }
     }
 }
