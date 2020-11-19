@@ -51,6 +51,10 @@ namespace WebApplication2
                         pattern: "Product/List/{category}",
                         defaults: new { controller = "Product", action = "List" }
                         );
+                    endpoints.MapControllerRoute(
+                        name: null,
+                        pattern: "{controller=Admin}/{action=Index}"
+                        );
                 });
         }
     }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApplication2.Models
 {
@@ -11,9 +8,17 @@ namespace WebApplication2.Models
         [Key]
         public int ProductId { get; set; }
 
+        [Required]
         public virtual Category Category { get; set; }
+
+        [Required, StringLength(100)]
         public String Name { get; set; }
+
+        [Required, Range(1, 1000000000)]
         public decimal Price { get; set; }
+
+        [Required, StringLength(10000)]
+        [Display(Name = "Description")]
         public String Desc { get; set; }
     }
 }

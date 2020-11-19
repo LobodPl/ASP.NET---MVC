@@ -16,5 +16,32 @@ namespace WebApplication2.Models
         }
 
         public IQueryable<Product> Products => ctx.Products.Include(x => x.Category);
+        public IQueryable<Category> Categories => ctx.Categories;
+
+        public void SaveItem(Product Product)
+        {
+            if (Product.ProductId == 0)
+            {
+                Product.Category = Categories.First(x => x.CategoryId == Product.Category.CategoryId);
+                ctx.Products.Add(Product);
+                ctx.SaveChanges();
+            }
+            else
+            {
+                Product temp = ctx.Products.First(x => x.ProductId == Product.ProductId);
+                temp.Name = Product.Name;
+                temp.Desc = Product.Desc;
+                temp.Price = Product.Price;
+                temp.Category = Categories.First(x => x.CategoryId == Product.Category.CategoryId);
+                ctx.SaveChanges();
+            }
+        }
+
+        public void DeleteItem(int itemId)
+        {
+            Product temp = ctx.Products.First(x => x.ProductId == itemId);
+            ctx.Products.Remove(temp);
+            ctx.SaveChanges();
+        }
     }
 }
