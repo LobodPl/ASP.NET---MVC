@@ -10,6 +10,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <a asp-controller="Account" asp-action="Logout"><button class="btn btn-danger">Logout</button></a>
         </nav>
     </header>
     @if (@TempData["message"] != null)
