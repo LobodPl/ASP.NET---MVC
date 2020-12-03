@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,7 @@ namespace WebApplication2
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration["Data:SportStoreProducts:ConnectionString"]));
             services.AddRazorPages();
             services.AddTransient<IProductRepository, EFProductRepository>();
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +41,9 @@ namespace WebApplication2
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseElapsedTimeMiddleware();
             app.UseEndpoints((endpoints) =>
                 {
                     endpoints.MapControllerRoute(
