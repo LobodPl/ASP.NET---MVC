@@ -17,15 +17,17 @@ namespace WebApplication2.Controllers
             this.EFPR = new EFProductRepository(ctx);
         }
 
+        //POST api/RestApi
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Product> Create(Product product)
         {
             EFPR.SaveItem(product);
-            return CreatedAtAction(nameof(getProductByName), new { id = product.ProductId }, product);
+            return CreatedAtAction(nameof(getProductById), new { id = product.ProductId }, product);
         }
 
+        //GET api/RestApi
         [HttpGet]
         public ActionResult<List<Product>> getProducts()
         {
@@ -38,8 +40,9 @@ namespace WebApplication2.Controllers
             return products;
         }
 
+        //GET api/RestApi/{id}
         [HttpGet("{id}")]
-        public ActionResult<Product> getProductByName(int id)
+        public ActionResult<Product> getProductById(int id)
         {
             Product product = EFPR.Products.First(x => x.ProductId == id);
 
@@ -51,6 +54,7 @@ namespace WebApplication2.Controllers
             return product;
         }
 
+        //PUT api/RestApi/{id}
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -59,9 +63,11 @@ namespace WebApplication2.Controllers
             if (id != product.ProductId) return BadRequest();
             EFPR.SaveItem(product);
 
-            return AcceptedAtAction(nameof(getProductByName), new { id = product.ProductId }, product);
+            return AcceptedAtAction(nameof(getProductById), new { id = product.ProductId }, product);
         }
 
+
+        //DELETE api/RestApi/{id}
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
