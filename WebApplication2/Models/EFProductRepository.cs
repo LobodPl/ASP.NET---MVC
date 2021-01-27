@@ -24,24 +24,29 @@ namespace WebApplication2.Models
             {
                 Product.Category = Categories.First(x => x.CategoryId == Product.Category.CategoryId);
                 ctx.Products.Add(Product);
-                ctx.SaveChanges();
             }
             else
             {
                 Product temp = ctx.Products.First(x => x.ProductId == Product.ProductId);
-                temp.Name = Product.Name;
-                temp.Desc = Product.Desc;
-                temp.Price = Product.Price;
-                temp.Category = Categories.First(x => x.CategoryId == Product.Category.CategoryId);
-                ctx.SaveChanges();
+                if (temp != null)
+                {
+                    temp.Name = Product.Name;
+                    temp.Desc = Product.Desc;
+                    temp.Price = Product.Price;
+                    temp.Category = Categories.First(x => x.CategoryId == Product.Category.CategoryId);
+                }
             }
+            ctx.SaveChanges();
         }
 
         public void DeleteItem(int itemId)
         {
             Product temp = ctx.Products.First(x => x.ProductId == itemId);
-            ctx.Products.Remove(temp);
-            ctx.SaveChanges();
+            if (temp != null)
+            {
+                ctx.Products.Remove(temp);
+                ctx.SaveChanges();
+            }
         }
     }
 }

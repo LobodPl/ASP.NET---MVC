@@ -83,6 +83,11 @@ C:\Users\konta\source\repos\WebApplication2\WebApplication2\bin\Debug\netcoreapp
 C:\Users\konta\source\repos\WebApplication2\WebApplication2\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\konta\source\repos\WebApplication2\WebApplication2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 C:\Users\konta\source\repos\WebApplication2\WebApplication2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
-C:\Users\konta\source\repos\WebApplication2\WebApplication2\obj\Debug\netcoreapp3.1\WebApplication2.csproj.CoreCompileInputs.cache
-C:\Users\konta\source\repos\WebApplication2\WebApplication2\obj\Debug\netcoreapp3.1\WebApplication2.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\konta\source\repos\WebApplication2\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\konta\source\repos\WebApplication2\WebApplication2\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\konta\source\repos\WebApplication2\WebApplication2\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\konta\source\repos\WebApplication2\WebApplication2\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\konta\source\repos\WebApplication2\WebApplication2\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\konta\source\repos\WebApplication2\WebApplication2\obj\Debug\netcoreapp3.1\WebApplication2.csproj.CoreCompileInputs.cache
+C:\Users\konta\source\repos\WebApplication2\WebApplication2\obj\Debug\netcoreapp3.1\WebApplication2.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\konta\source\repos\WebApplication2\WebApplication2\obj\Debug\netcoreapp3.1\WebApplication2.MvcApplicationPartsAssemblyInfo.cache

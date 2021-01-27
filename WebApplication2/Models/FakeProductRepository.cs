@@ -14,6 +14,18 @@ namespace WebApplication2.Models
             this.Products = List;
         }
 
+        public IQueryable<Category> Categories => throw new NotImplementedException();
+
         IQueryable<Product> IProductRepository.Products => this.Products;
+
+        public void DeleteItem(int itemId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveItem(Product product)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

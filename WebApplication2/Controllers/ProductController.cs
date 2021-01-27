@@ -11,11 +11,11 @@ namespace WebApplication2.Controllers
 {
     public class ProductController : Controller
     {
-        private EFProductRepository EFPR;
+        private IProductRepository EFPR;
 
-        public ProductController(AppDbContext ctx)
+        public ProductController(IProductRepository repo)
         {
-            this.EFPR = new EFProductRepository(ctx);
+            EFPR = repo;
         }
 
         public IActionResult Index()
@@ -27,5 +27,7 @@ namespace WebApplication2.Controllers
         {
             return View(this.EFPR.Products.Where(x => x.Category.Name == category));
         }
+
+        public ViewResult GetItemById(int id) => View(EFPR.Products.Single(x => x.ProductId == id));
     }
 }

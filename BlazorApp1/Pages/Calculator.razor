@@ -1,0 +1,20 @@
+﻿@page "/calc"
+
+<h1>Calculator</h1>
+
+<input type="text" @bind="A" />
+<input type="text" @bind="B" />
+
+<button class="btn btn-primary" @onclick="Sumit">Add</button>
+<p>Sum: @currentSum</p>
+
+@code {
+    private int currentSum = 0;
+    private string A = "";
+    private string B = "";
+
+    private void Sumit()
+    {
+        currentSum = int.Parse(A) + int.Parse(B);
+    }
+}

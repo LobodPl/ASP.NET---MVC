@@ -8,5 +8,10 @@ namespace WebApplication2.Models
     public interface IProductRepository
     {
         IQueryable<Product> Products { get; }
+        IQueryable<Category> Categories { get; }
+
+        void DeleteItem(int itemId);
+
+        void SaveItem(Product product);
     }
 }

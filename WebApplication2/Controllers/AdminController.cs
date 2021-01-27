@@ -11,11 +11,11 @@ namespace WebApplication2.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-        private EFProductRepository EFPR;
+        private IProductRepository EFPR;
 
-        public AdminController(AppDbContext ctx)
+        public AdminController(IProductRepository repo)
         {
-            this.EFPR = new EFProductRepository(ctx);
+            EFPR = repo;
         }
 
         public IActionResult Index()
@@ -60,7 +60,7 @@ namespace WebApplication2.Controllers
         {
             EFPR.DeleteItem(ProductId);
             TempData["message"] = "Product został usunięty.";
-            return View("Index", EFPR.Products);
+            return RedirectToAction("Index");
         }
     }
 }
