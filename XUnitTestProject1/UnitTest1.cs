@@ -73,6 +73,27 @@ namespace lab2.tests
             Assert.Equal(ViewModel.Name, expectedName);
         }
 
+        [Theory]
+        [InlineData("Cat1", 1)]
+        [InlineData("Cat2", 2)]
+        public void ProductsGetByCategory(string categoryName, int expectedId)
+        {
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns((new Product[] {
+                new Product {ProductId = 1, Name = "P1", Category = new Category{Name="Cat1"} },
+                new Product {ProductId = 2, Name = "P2", Category = new Category{Name="Cat2"} },
+                new Product {ProductId = 3, Name = "P3", Category = new Category{Name="Cat1"} },
+                new Product {ProductId = 4, Name = "P4", Category = new Category{Name="Cat2"} },
+                new Product {ProductId = 5, Name = "P5", Category = new Category{Name="Cat3"} }
+            }).AsQueryable<Product>());
+
+            ProductController controller = new ProductController(mock.Object);
+
+            Product ViewModel = GetViewModel<List<Product>>(controller.GetItemByCategoryName(categoryName)).First();
+
+            Assert.Equal(ViewModel.ProductId, expectedId);
+        }
+
         private T GetViewModel<T>(IActionResult result) where T : class
         {
             return (result as ViewResult)?.ViewData.Model as T;

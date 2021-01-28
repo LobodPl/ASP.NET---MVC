@@ -29,5 +29,7 @@ namespace WebApplication2.Controllers
         }
 
         public ViewResult GetItemById(int id) => View(EFPR.Products.Single(x => x.ProductId == id));
+
+        public ViewResult GetItemByCategoryName(string category) => View(EFPR.Products.Where(x => x.Category.Name == category).ToList());
     }
 }
